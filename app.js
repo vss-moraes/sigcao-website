@@ -36,7 +36,7 @@
 
     $http({
       method: 'GET',
-      url: 'sigcao.herokuapp.com/ocorrencias.json'
+      url: 'http://sigcao.herokuapp.com/ocorrencias.json'
     }).then(function successCallback(response) {
       iniciarMapa(response.data);
     }, function errorCallback() {
