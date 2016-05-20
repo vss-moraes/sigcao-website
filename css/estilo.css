@@ -1,18 +1,14 @@
-html, body { 
-    height: 100%; 
-    margin: 0; 
+html,
+body {
+    height: 100%;
+    margin: 0;
     padding: 0;
 }
 
-
-#map { 
+#map {
     height: 100%;
 }
 
-#add {
-    position: absolute;
-    right: 40px;
-    top: 36px;
-    z-index: 999;
+.navbar {
+  margin-bottom: auto;
 }
-
