@@ -1,6 +1,6 @@
 var mapa;
 var arrayMarcadores = [];
-var urlBase = "http://sigcao.herokuapp.com/ocorrencias/?"
+var urlBase = "http://localhost:8000/ocorrencias/"
 
 function initMap() {
   mapa = new google.maps.Map(document.getElementById('map'), {
@@ -8,6 +8,14 @@ function initMap() {
     disableDefaultUI: true,
     scrollwheel: false,
     zoom: 15
+  });
+  mapa.addListener('tilesloaded', function(){
+    var ne = mapa.getBounds().getNorthEast();
+    var sw = mapa.getBounds().getSouthWest();
+    caminho = urlBase + "mapa/?lat=" + ne.lat().toFixed(6) + "&lat=" + sw.lat().toFixed(6) + "&lng=" + ne.lng().toFixed(6) + "&lng=" + sw.lng().toFixed(6);
+    console.log(caminho);
+
+    carregaOcorrencias(caminho);
   });
 }
 
@@ -26,18 +34,18 @@ function limpaMarcadores(){
   arrayMarcadores.length = 0;
 }
 
-$(document).ready(function(){
+/*$(document).ready(function(){
   carregaOcorrencias(urlBase);
-  console.log(arrayMarcadores);
-});
+})*/
 
 $("#botaoEnvio").click(function() {
     var query = $("#formulario").serialize();
-    var caminho = urlBase + query;
+    var caminho = urlBase +"?"+ query;
     console.log(caminho);
     carregaOcorrencias(caminho);
     return false;
 });
+
 
 function carregaOcorrencias(caminho){
   limpaMarcadores();
