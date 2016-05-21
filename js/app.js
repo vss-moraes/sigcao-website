@@ -1,22 +1,30 @@
 var mapa;
+var mapaDiv = document.getElementById('map');
 var arrayMarcadores = [];
-var urlBase = "http://localhost:8000/ocorrencias/"
+var urlBase = "http://sigcao.herokuapp.com/ocorrencias/?"
 
 function initMap() {
-  mapa = new google.maps.Map(document.getElementById('map'), {
+  mapa = new google.maps.Map(mapaDiv, {
     center: {lat: -20.462302, lng: -55.791090},
     disableDefaultUI: true,
     scrollwheel: false,
     zoom: 15
   });
+
   mapa.addListener('tilesloaded', function(){
+  //google.maps.event.addDomListener(window, 'load', function(){
     var ne = mapa.getBounds().getNorthEast();
     var sw = mapa.getBounds().getSouthWest();
-    caminho = urlBase + "mapa/?lat=" + ne.lat().toFixed(6) + "&lat=" + sw.lat().toFixed(6) + "&lng=" + ne.lng().toFixed(6) + "&lng=" + sw.lng().toFixed(6);
+    if (urlBase.slice(-1) != "?"){
+      urlBase = urlBase + "&";
+    }
+    caminho = urlBase + "lat=" + ne.lat().toFixed(6) + "&lat=" + sw.lat().toFixed(6) + "&lng=" + ne.lng().toFixed(6) + "&lng=" + sw.lng().toFixed(6);
     console.log(caminho);
 
     carregaOcorrencias(caminho);
   });
+  //});
+
 }
 
 function adicionarOcorrencia (mapa, latLng){
@@ -34,15 +42,17 @@ function limpaMarcadores(){
   arrayMarcadores.length = 0;
 }
 
-/*$(document).ready(function(){
-  carregaOcorrencias(urlBase);
-})*/
+$(document).ready(function(){
+})
 
 $("#botaoEnvio").click(function() {
     var query = $("#formulario").serialize();
-    var caminho = urlBase +"?"+ query;
-    console.log(caminho);
-    carregaOcorrencias(caminho);
+    if (query == []){
+      urlBase = "http://sigcao.herokuapp.com/ocorrencias/?"
+    }
+    urlBase = urlBase + query;
+    console.log(urlBase);
+    carregaOcorrencias(urlBase);
     return false;
 });
 
@@ -60,8 +70,5 @@ function carregaOcorrencias(caminho){
       adicionarOcorrencia(mapa, coordenadas);
     }
     console.log(arrayMarcadores.length);
-    if (arrayMarcadores.length == 0){
-      alert("Nenhuma ocorrência encontrada.");
-    }
   });
 }
