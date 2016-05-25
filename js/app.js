@@ -47,9 +47,9 @@ $(document).ready(function(){
 
 $("#botaoEnvio").click(function() {
     var query = $("#formulario").serialize();
-    if (query == []){
+    //if (query == []){
       urlBase = "http://sigcao.herokuapp.com/ocorrencias/?"
-    }
+    //}
     urlBase = urlBase + query;
     console.log(urlBase);
     carregaOcorrencias(urlBase);
