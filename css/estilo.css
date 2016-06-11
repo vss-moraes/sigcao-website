@@ -12,8 +12,24 @@ div, main {
 #map {
     height: 100%;
     width: 100%;
-    background-color: red;
     position: relative;
+}
+
+#formulario {
+    margin-left: 5px;
+    margin-top: auto;
+}
+
+.centralizar {
+    height: auto;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.marker {
+    width: 25px;
+    height: 25px;
 }
 
 .mdl-layout__drawer-button, .mdl-layout__drawer{
