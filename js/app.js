@@ -8,23 +8,20 @@ function initMap() {
     center: {lat: -20.462302, lng: -55.791090},
     disableDefaultUI: true,
     scrollwheel: false,
-    zoom: 15
+    zoom: 14
   });
 
-  // mapa.addListener('tilesloaded', function(){
-  google.maps.event.addDomListener(window, 'load', function(){
-    var ne = mapa.getBounds().getNorthEast();
-    var sw = mapa.getBounds().getSouthWest();
-    if (urlBase.slice(-1) != "?"){
-      urlBase = urlBase + "&";
-    }
-    caminho = urlBase + "lat=" + ne.lat().toFixed(6) + "&lat=" + sw.lat().toFixed(6) +
-              "&lng=" + ne.lng().toFixed(6) + "&lng=" + sw.lng().toFixed(6);
-    console.log(caminho);
-
-    carregaOcorrencias(caminho);
-  });
-  //});
+  // google.maps.event.addDomListener(window, 'load', function(){
+  //   var ne = mapa.getBounds().getNorthEast();
+  //   var sw = mapa.getBounds().getSouthWest();
+  //   if (urlBase.slice(-1) != "?"){
+  //     urlBase = urlBase + "&";
+  //   }
+  //   caminho = urlBase + "lat=" + ne.lat().toFixed(6) + "&lat=" + sw.lat().toFixed(6) +
+  //             "&lng=" + ne.lng().toFixed(6) + "&lng=" + sw.lng().toFixed(6);
+  //
+  //   carregaOcorrencias(caminho);
+  // });
 }
 
 function adicionarOcorrencia (mapa, latLng, icone){
@@ -57,11 +54,8 @@ function carregaOcorrencias(caminho){
       var icone = "https://maps.google.com/mapfiles/ms/icons/" + cores[data[i].doenca.id - 1] +  "-dot.png";
       adicionarOcorrencia(mapa, coordenadas, icone);
     }
-    console.log(arrayMarcadores.length);
   });
 }
-
-$body = $("body");
 
 $(document).on({
     ajaxStart: function() {
@@ -77,8 +71,8 @@ $(document).on({
 
 $("#botaoEnvio").click(function() {
     var query = $("#formulario").serialize();
-    urlBase = "http://sigcao.herokuapp.com/ocorrencias/?" + query;
-    carregaOcorrencias(urlBase);
+    // urlBase = "http://sigcao.herokuapp.com/ocorrencias/?" + query;
+    carregaOcorrencias("http://sigcao.herokuapp.com/ocorrencias/?" + query;);
     return false;
 });
 
