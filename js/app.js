@@ -12,7 +12,7 @@ function initMap() {
   });
 
   google.maps.event.addDomListener(window, 'load', function(){
-    caminho = urlBase + "doenca=Cinomose&doenca=Coronavirose&doenca=Hepatite+Infecciosa&doenca=Leishmaniose&doenca=Leptospirose&doenca=Parainfluenza&doenca=Parvovirose&doenca=Raiva";  
+    caminho = urlBase + "doenca=Cinomose&doenca=Coronavirose&doenca=Hepatite+Infecciosa&doenca=Leishmaniose&doenca=Leptospirose&doenca=Parainfluenza&doenca=Parvovirose&doenca=Raiva";
     carregaOcorrencias(caminho);
   });
 }
@@ -65,7 +65,7 @@ $(document).on({
 $("#botaoEnvio").click(function() {
     var query = $("#formulario").serialize();
     // urlBase = "http://sigcao.herokuapp.com/ocorrencias/?" + query;
-    carregaOcorrencias("http://sigcao.herokuapp.com/ocorrencias/?" + query;);
+    carregaOcorrencias("http://sigcao.herokuapp.com/ocorrencias/?" + query);
     return false;
 });
 
