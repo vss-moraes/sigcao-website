@@ -11,17 +11,10 @@ function initMap() {
     zoom: 14
   });
 
-  // google.maps.event.addDomListener(window, 'load', function(){
-  //   var ne = mapa.getBounds().getNorthEast();
-  //   var sw = mapa.getBounds().getSouthWest();
-  //   if (urlBase.slice(-1) != "?"){
-  //     urlBase = urlBase + "&";
-  //   }
-  //   caminho = urlBase + "lat=" + ne.lat().toFixed(6) + "&lat=" + sw.lat().toFixed(6) +
-  //             "&lng=" + ne.lng().toFixed(6) + "&lng=" + sw.lng().toFixed(6);
-  //
-  //   carregaOcorrencias(caminho);
-  // });
+  google.maps.event.addDomListener(window, 'load', function(){
+    caminho = urlBase + "doenca=Cinomose&doenca=Coronavirose&doenca=Hepatite+Infecciosa&doenca=Leishmaniose&doenca=Leptospirose&doenca=Parainfluenza&doenca=Parvovirose&doenca=Raiva";  
+    carregaOcorrencias(caminho);
+  });
 }
 
 function adicionarOcorrencia (mapa, latLng, icone){
