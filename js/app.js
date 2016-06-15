@@ -15,6 +15,20 @@ function initMap() {
     caminho = urlBase + "doenca=Cinomose&doenca=Coronavirose&doenca=Hepatite+Infecciosa&doenca=Leishmaniose&doenca=Leptospirose&doenca=Parainfluenza&doenca=Parvovirose&doenca=Raiva";
     carregaOcorrencias(caminho);
   });
+
+  var limitesPermitidos = new google.maps.LatLngBounds(
+      new google.maps.LatLng(-20.517839, -55.856804),
+      new google.maps.LatLng(-20.400109, -55.707116)
+  );
+  var ultimoCentroValido = mapa.getCenter();
+
+  google.maps.event.addListener(mapa, 'center_changed', function() {
+      if (limitesPermitidos.contains(mapa.getCenter())) {
+          ultimoCentroValido = mapa.getCenter();
+          return;
+      }
+      mapa.panTo(ultimoCentroValido);
+  });
 }
 
 function adicionarOcorrencia (mapa, latLng, icone){
