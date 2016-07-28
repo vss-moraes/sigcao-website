@@ -1,7 +1,7 @@
 var mapa;
 var mapaDiv = document.getElementById('map');
 var arrayMarcadores = [];
-var urlBase = "http://sigcao.herokuapp.com/ocorrencias/?"
+var urlBase = "http://localhost:8000/ocorrencias/?"
 
 function initMap() {
   mapa = new google.maps.Map(mapaDiv, {
@@ -12,7 +12,7 @@ function initMap() {
   });
 
   google.maps.event.addDomListener(window, 'load', function(){
-    caminho = urlBase + "doenca=Cinomose&doenca=Coronavirose&doenca=Hepatite+Infecciosa&doenca=Leishmaniose&doenca=Leptospirose&doenca=Parainfluenza&doenca=Parvovirose&doenca=Raiva";
+    caminho = urlBase + "doenca=Babesiose&doenca=Cinomose&doenca=Coronavirose&doenca=Ehrlichiose&doenca=Hepatite+Infecciosa&doenca=Leishmaniose&doenca=Leptospirose&doenca=Parainfluenza&doenca=Parvovirose&doenca=Raiva";
     carregaOcorrencias(caminho);
   });
 
@@ -78,8 +78,8 @@ $(document).on({
 
 $("#botaoEnvio").click(function() {
     var query = $("#formulario").serialize();
-    // urlBase = "http://sigcao.herokuapp.com/ocorrencias/?" + query;
-    carregaOcorrencias("http://sigcao.herokuapp.com/ocorrencias/?" + query);
+    // urlBase = "http://localhost:8000/ocorrencias/?" + query;
+    carregaOcorrencias("http://localhost:8000/ocorrencias/?" + query);
     return false;
 });
 
